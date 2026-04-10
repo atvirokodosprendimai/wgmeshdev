@@ -430,14 +430,14 @@
         <div class="dot dot-g"></div>
       </div>
       <div class="terminal-body">
-        <div><span class="t-prompt">$ </span><span class="t-cmd">wgmesh up --secret my-shared-secret</span></div>
+        <div><span class="t-prompt">$ </span><span class="t-cmd">wgmesh join --secret "wgmesh://v1/my-shared-secret"</span></div>
         <div><span class="t-out">  Generating WireGuard keypair...</span></div>
         <div><span class="t-out">  Joining DHT swarm (key: sha256:a3f…)</span></div>
         <div><span class="t-out">  Discovered 3 peers via DHT</span></div>
         <div><span class="t-out">  NAT traversal: UDP hole-punch successful</span></div>
         <div><span class="t-ok">  ✓ Mesh is up — 3 peers connected</span></div>
         <br/>
-        <div><span class="t-prompt">$ </span><span class="t-cmd">wgmesh peers</span></div>
+        <div><span class="t-prompt">$ </span><span class="t-cmd">wgmesh status</span></div>
         <div><span class="t-out">  10.0.0.2   node-alpha   last-seen: 0s</span></div>
         <div><span class="t-out">  10.0.0.3   node-beta    last-seen: 1s</span></div>
         <div><span class="t-out">  10.0.0.4   node-gamma   last-seen: 2s</span></div>
