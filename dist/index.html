@@ -644,23 +644,25 @@
   <div class="container">
     <p class="section-label">Installation</p>
     <h2 class="section-title">Up and running in minutes</h2>
-    <p class="section-desc">Pre-built binaries for Linux. Requires WireGuard kernel module and <code style="color:var(--cyan)">wg-tools</code>.</p>
+    <p class="section-desc">Pre-built binaries for Linux and macOS. Requires WireGuard kernel module and <code style="color:var(--cyan)">wg-tools</code> on Linux.</p>
 
     <div class="install-tabs">
-      <span class="tab-btn active">Binary</span>
-      <span class="tab-btn" style="margin-left:4px">From Source</span>
+      <span class="tab-btn active">Homebrew</span>
+      <span class="tab-btn" style="margin-left:4px">Binary</span>
+      <span class="tab-btn" style="margin-left:4px">Go</span>
       <span class="tab-btn" style="margin-left:4px">Docker</span>
     </div>
-    <div class="code-block"><span class="comment"># Download latest binary (Linux amd64)</span>
-<span class="cmd">curl -LO https://github.com/atvirokodosprendimai/wgmesh/releases/latest/download/wgmesh-linux-amd64
-chmod +x wgmesh-linux-amd64
-sudo mv wgmesh-linux-amd64 /usr/local/bin/wgmesh</span>
+    <div class="code-block"><span class="comment"># macOS / Linux via Homebrew</span>
+<span class="cmd">brew install atvirokodosprendimai/tap/wgmesh</span>
 
-<span class="comment"># Bring up a decentralized mesh</span>
-<span class="cmd">sudo wgmesh up --secret <span class="str">your-shared-secret</span></span>
+<span class="comment"># Generate a shared secret (once)</span>
+<span class="cmd">wgmesh init --secret</span>
 
-<span class="comment"># Check connected peers</span>
-<span class="cmd">wgmesh peers</span></div>
+<span class="comment"># Join the mesh on every node — same secret</span>
+<span class="cmd">sudo wgmesh join --secret <span class="str">"wgmesh://v1/your-secret"</span></span>
+
+<span class="comment"># Check mesh status and connected peers</span>
+<span class="cmd">wgmesh status --secret <span class="str">"wgmesh://v1/your-secret"</span></span></div>
   </div>
 </section>
 
