@@ -644,16 +644,20 @@
   <div class="container">
     <p class="section-label">Installation</p>
     <h2 class="section-title">Up and running in minutes</h2>
-    <p class="section-desc">Pre-built binaries for Linux and macOS. Requires WireGuard kernel module and <code style="color:var(--cyan)">wg-tools</code> on Linux.</p>
+    <p class="section-desc">Pre-built binaries for Linux amd64, arm64, and armv7. Requires WireGuard kernel module and <code style="color:var(--cyan)">wg-tools</code> on Linux. Go 1.23+ needed to build from source.</p>
 
     <div class="install-tabs">
-      <span class="tab-btn active">Homebrew</span>
-      <span class="tab-btn" style="margin-left:4px">Binary</span>
-      <span class="tab-btn" style="margin-left:4px">Go</span>
-      <span class="tab-btn" style="margin-left:4px">Docker</span>
+      <span class="tab-btn active" data-tab="binary">Binary</span>
+      <span class="tab-btn" data-tab="source" style="margin-left:4px">Source</span>
+      <span class="tab-btn" data-tab="docker" style="margin-left:4px">Docker</span>
     </div>
-    <div class="code-block"><span class="comment"># macOS / Linux via Homebrew</span>
-<span class="cmd">brew install atvirokodosprendimai/tap/wgmesh</span>
+
+    <div id="tab-binary" class="code-block tab-panel"><span class="comment"># Download pre-built binary (Linux amd64)</span>
+<span class="cmd">wget https://github.com/atvirokodosprendimai/wgmesh/releases/latest/download/wgmesh-linux-amd64</span>
+<span class="cmd">chmod +x wgmesh-linux-amd64</span>
+<span class="cmd">sudo mv wgmesh-linux-amd64 /usr/local/bin/wgmesh</span>
+
+<span class="comment"># Also available: wgmesh-linux-arm64, wgmesh-linux-armv7</span>
 
 <span class="comment"># Generate a shared secret (once)</span>
 <span class="cmd">wgmesh init --secret</span>
@@ -661,8 +665,37 @@
 <span class="comment"># Join the mesh on every node — same secret</span>
 <span class="cmd">sudo wgmesh join --secret <span class="str">"wgmesh://v1/your-secret"</span></span>
 
-<span class="comment"># Check mesh status and connected peers</span>
+<span class="comment"># Check mesh status</span>
 <span class="cmd">wgmesh status --secret <span class="str">"wgmesh://v1/your-secret"</span></span></div>
+
+    <div id="tab-source" class="code-block tab-panel" style="display:none"><span class="comment"># Requires Go 1.23+ and WireGuard tools (wg command)</span>
+<span class="cmd">git clone https://github.com/atvirokodosprendimai/wgmesh.git</span>
+<span class="cmd">cd wgmesh</span>
+<span class="cmd">go build -o wgmesh</span>
+<span class="cmd">sudo mv wgmesh /usr/local/bin/wgmesh</span>
+
+<span class="comment"># Generate a shared secret (once)</span>
+<span class="cmd">wgmesh init --secret</span>
+
+<span class="comment"># Join the mesh on every node — same secret</span>
+<span class="cmd">sudo wgmesh join --secret <span class="str">"wgmesh://v1/your-secret"</span></span>
+
+<span class="comment"># Verify installation</span>
+<span class="cmd">wgmesh version</span></div>
+
+    <div id="tab-docker" class="code-block tab-panel" style="display:none"><span class="cmd">docker pull ghcr.io/atvirokodosprendimai/wgmesh:latest</span>
+
+<span class="comment"># Run with full WireGuard functionality</span>
+<span class="cmd">docker run --rm --privileged --network host \
+  -v $(pwd)/wgmesh-state:/var/lib/wgmesh \
+  ghcr.io/atvirokodosprendimai/wgmesh:latest join \
+  --secret <span class="str">"wgmesh://v1/your-secret"</span></span>
+
+<span class="comment"># Check status</span>
+<span class="cmd">docker run --rm --privileged --network host \
+  -v $(pwd)/wgmesh-state:/var/lib/wgmesh \
+  ghcr.io/atvirokodosprendimai/wgmesh:latest status \
+  --secret <span class="str">"wgmesh://v1/your-secret"</span></span></div>
   </div>
 </section>
 
@@ -678,5 +711,15 @@
   Built with WireGuard® — a registered trademark of Jason A. Donenfeld.</p>
 </footer>
 
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.style.display = 'none');
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).style.display = 'block';
+    });
+  });
+</script>
 </body>
 </html>
