@@ -415,6 +415,7 @@
     <li><a href="#how-it-works">How it works</a></li>
     <li><a href="#modes">Modes</a></li>
     <li><a href="#install">Install</a></li>
+    <li><a href="#story">Story</a></li>
     <li><a href="https://github.com/atvirokodosprendimai/wgmesh" target="_blank">GitHub ↗</a></li>
     <li><a href="https://discord.gg/HUApcDn6ra" target="_blank">Discord ↗</a></li>
   </ul>
@@ -708,6 +709,32 @@
   -v $(pwd)/wgmesh-state:/var/lib/wgmesh \
   ghcr.io/atvirokodosprendimai/wgmesh:latest status \
   --secret <span class="str">"wgmesh://v1/your-secret"</span></span></div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story" style="background: var(--bg2);">
+  <div class="container">
+    <p class="section-label">Origin</p>
+    <h2 class="section-title">The Story</h2>
+    <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+
+      <div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--cyan); margin-bottom: 0.75rem;">The Problem</h3>
+        <p style="color: var(--text); line-height: 1.8; text-align: justify;">Securely connecting your computers, servers, or home devices across the internet is surprisingly difficult. While tools exist to create private networks, making multiple devices talk directly to each other usually requires a deep technical background and constant maintenance. The "easy" alternatives solve this by acting as a middleman—forcing you to route your private traffic through their corporate servers, sign up for paid subscriptions, and trust a third party with your network's control switch.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--cyan); margin-bottom: 0.75rem;">The Frustration</h3>
+        <p style="color: var(--text); line-height: 1.8; text-align: justify;">I was exhausted by this tradeoff. I wanted blazing-fast, secure connections between my devices, but I hated that setting it up manually meant hours of managing complex configuration files every time a device changed networks. Even worse, I was deeply frustrated by the idea of relying on centralized servers just to let my own machines communicate. I wanted true ownership of my infrastructure—no single point of failure, no artificial limits, and absolutely no middlemen.</p>
+      </div>
+
+      <div>
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--cyan); margin-bottom: 0.75rem;">The Solution: WGMesh</h3>
+        <p style="color: var(--text); line-height: 1.8; text-align: justify;">I built WGMesh to make private networking effortless and entirely yours. The philosophy is simple: <em style="color: var(--white);">Share a secret, build a network.</em> You don't need to rent a central server or understand advanced cryptography. By entering a single shared password, WGMesh acts like an invisible, highly secure cable connecting all your devices worldwide. It works in the background to bypass firewalls and automatically link your machines together into a self-healing web. What used to be a frustrating IT chore is now just a single command—giving you a fast, private network where you hold all the keys.</p>
+      </div>
+
+    </div>
   </div>
 </section>
 
